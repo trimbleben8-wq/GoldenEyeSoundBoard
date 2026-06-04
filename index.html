@@ -180,8 +180,8 @@ soundNames.forEach((name, index) =>
         // Stop the previous track before starting the new one
         stopCurrentSound();
 
-        // Create and play the new audio
-        currentAudio = new Audio(`sounds/sound${index+1}.mp3`);
+        // Create and play the new audio from the root/same directory
+        currentAudio = new Audio(`sound${index+1}.mp3`);
         currentAudio.play();
     };
 
