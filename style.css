@@ -1,0 +1,111 @@
+body
+{
+    margin: 0;
+    padding: 20px;
+
+    background: #25281f;
+
+    background-image:
+    repeating-linear-gradient(
+        45deg,
+        #2d3125 0px,
+        #2d3125 8px,
+        #25281f 8px,
+        #25281f 16px
+    );
+
+    color: #e0e0d0;
+
+    font-family: Arial, sans-serif;
+}
+
+h1
+{
+    text-align: center;
+
+    font-size: 42px;
+
+    letter-spacing: 3px;
+
+    color: #d8d8b0;
+}
+
+#buttonGrid
+{
+    max-width: 1600px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(6, 1fr);
+
+    gap: 16px;
+}
+
+.soundButton
+{
+    height: 120px;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #7d8458,
+        #4b5035
+    );
+
+    border: 4px solid #111;
+
+    color: white;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    box-shadow:
+    inset 3px 3px 0 #9ca86d,
+    inset -3px -3px 0 #1a1a1a;
+
+    transition: transform 0.05s;
+}
+
+.soundButton:hover
+{
+    filter: brightness(1.15);
+}
+
+.soundButton:active
+{
+    transform: translateY(2px);
+}
+
+#stopButton
+{
+    position: fixed;
+
+    right: 20px;
+
+    bottom: 20px;
+
+    width: 150px;
+
+    height: 70px;
+
+    background: #8a1d1d;
+
+    border: 4px solid black;
+
+    color: white;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    z-index: 9999;
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>GoldenEye Music Test</title>
+
+<style>
+
+body
+{
+    margin: 0;
+    padding: 20px;
+
+    /* 1. Point to your image file or a URL */
+    background-image: url('your-photo-name.jpg');
+
+    /* 2. Scale the image to perfectly cover the entire screen */
+    background-size: cover;
+
+    /* 3. Center the image so it looks even on all screen sizes */
+    background-position: center;
+
+    /* 4. Keep the image fixed in place while you scroll through the music buttons */
+    background-attachment: fixed;
+
+    /* 5. Prevent the image from repeating/tiling */
+    background-repeat: no-repeat;
+
+    color: #e0e0d0;
+    font-family: Arial, sans-serif;
+}
+
+h1
+{
+    text-align: center;
+    font-size: 42px;
+    letter-spacing: 3px;
+    color: #d8d8b0;
+}
+
+#buttonGrid
+{
+    max-width: 1600px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    padding-bottom: 100px; /* Prevents stop button from overlapping last row */
+}
+
+.soundButton
+{
+    height: 120px;
+    background:
+    linear-gradient(
+        to bottom,
+        #7d8458,
+        #4b5035
+    );
+    border: 4px solid #111;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow:
+    inset 3px 3px 0 #9ca86d,
+    inset -3px -3px 0 #1a1a1a;
+    transition: transform 0.05s;
+}
+
+.soundButton:hover
+{
+    filter: brightness(1.15);
+}
+
+.soundButton:active
+{
+    transform: translateY(2px);
+}
+
+#stopButton
+{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 150px;
+    height: 70px;
+    background: #8a1d1d;
+    border: 4px solid black;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+#stopButton:hover
+{
+    filter: brightness(1.15);
+}
+
+#stopButton:active
+{
+    transform: translateY(2px);
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>GOLDENEYE MUSIC TEST</h1>
+
+<div id="buttonGrid"></div>
+
+<button id="stopButton">STOP</button>
+
+<script>
+
+const soundNames =
+[
+    "007 Theme",
+    "Mission Briefing",
+    "Watch Pause Theme",
+    "Arkangelsk Dam",
+    "Soviet Facility",
+    "Runway Escape",
+    "Surface Part I",
+    "Bunker Infiltration",
+    "Kirghizstan Silo",
+    "The Frigate",
+    "Surface Part II",
+    "Bunker Escape",
+    "Statue Park",
+    "St. Petersburg Archives",
+    "St. Petersburg Streets",
+    "Quiet Depot",
+    "Trevelyan's Train",
+    "VS Xenia",
+    "Control Room",
+    "Water Caverns",
+    "Antenna Cradle (VS 006)",
+    "Aztec Launch Site",
+    "Egyptian Temple",
+    "Basement (Multiplayer)",
+    "Citadel (Multiplayer)",
+    "Ending Theme",
+    "Elevator (Control)",
+    "Elevator (Caverns)",
+    "007 Dead",
+    "Agent Dead"
+];
+
+const grid = document.getElementById("buttonGrid");
+const stopButton = document.getElementById("stopButton");
+
+// Variable to keep track of the currently playing audio object
+let currentAudio = null;
+
+// Function to stop whatever is currently playing
+function stopCurrentSound() {
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0; // Reset track to beginning
+    }
+}
+
+soundNames.forEach((name, index) =>
+{
+    const button = document.createElement("button");
+
+    button.className = "soundButton";
+    button.textContent = name;
+
+    button.onclick = () =>
+    {
+        // Stop the previous track before starting the new one
+        stopCurrentSound();
+
+        // Create and play the new audio
+        currentAudio = new Audio(`sounds/sound${index+1}.mp3`);
+        currentAudio.play();
+    };
+
+    grid.appendChild(button);
+});
+
+// Hook up the stop button functionality
+stopButton.onclick = () => {
+    stopCurrentSound();
+};
+
+</script>
+
+</body>
+</html>
